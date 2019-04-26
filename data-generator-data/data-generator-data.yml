@@ -34,7 +34,6 @@ eureka:
     lease-expiration-duration-in-seconds: 10
 mybatis:
   config-location: classpath:mybatis/mybatis-config.xml
-  #type-aliases-package: cn.com.yoyosys.datagenerator.task.entity
   mapper-locations: classpath:mybatis/mapper/*.xml
 management:
   endpoints:
