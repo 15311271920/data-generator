@@ -12,5 +12,13 @@ zuul:
   ignored-services: "*"
   routes:
     data-generator-data: /data-proxy/** 
-    data-generator-task: /task-proxy/** 
-    
+    data-generator-task: /task-proxy/**
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:7001/eureka
+  instance:
+    instance-id: data-generator-data:8081
+    prefer-ip-address: true
+    lease-renewal-interval-in-seconds: 3
+    lease-expiration-duration-in-seconds: 10
