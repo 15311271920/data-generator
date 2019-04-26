@@ -1,39 +1,9 @@
-server:
-  port: 8081
 spring:
-  application:
-    name: data-generator-data
-  datasource:
-    type: com.alibaba.druid.pool.DruidDataSource    # 配置当前要使用的数据源的操作类型
-    driver-class-name: com.mysql.cj.jdbc.Driver      # 配置MySQL的驱动程序类
-    url: jdbc:mysql://172.16.160.61:3306/data_generator
-    username: root
-    password: root
-    filter: stat,wall,log4j
-    dbcp2:  # 进行数据库连接池的配置
-      min-idle: 5                   # 数据库连接池的最小维持连接数
-      initial-size: 5                 # 初始化连接数
-      max-total: 5                    # 最大连接数
-      max-wait-millis: 200                # 等待连接获取的最大超时时间
-      validationQuery: SELECT 'x' from dual
-feign:
-  hystrix:
-    enabled: true
-eureka:
-  client:
-    service-url:
-      defaultZone: http://localhost:7001/eureka
-  instance:
-    instance-id: data-generator-data:8081
-    prefer-ip-address: true
-    lease-renewal-interval-in-seconds: 3
-    lease-expiration-duration-in-seconds: 10
-mybatis:
-  config-location: classpath:mybatis/mybatis-config.xml
-  #type-aliases-package: cn.com.yoyosys.datagenerator.task.entity
-  mapper-locations: classpath:mybatis/mapper/*.xml
-management:
-  endpoints:
-    web:
-      exposure:
-        include: hystrix.stream
+  profiles:
+    active:
+    - dev
+---
+spring:
+  profiles: dev
+  application: 
+    name: data-generator-config
