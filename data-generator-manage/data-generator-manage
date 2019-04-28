@@ -1,0 +1,45 @@
+spring:
+  profiles:
+    active:
+    - dev
+---
+spring: 
+  profiles: dev
+  application:
+    name: data-generator-manage
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource    # 配置当前要使用的数据源的操作类型
+    driver-class-name: com.mysql.cj.jdbc.Driver      # 配置MySQL的驱动程序类
+    url: jdbc:mysql://172.16.160.61:3306/data_generator
+    username: root
+    password: root
+    filter: stat,wall,log4j
+    dbcp2:  # 进行数据库连接池的配置
+      min-idle: 5                   # 数据库连接池的最小维持连接数
+      initial-size: 5                 # 初始化连接数
+      max-total: 5                    # 最大连接数
+      max-wait-millis: 200                # 等待连接获取的最大超时时间
+      validationQuery: SELECT 'x' from dual
+
+
+server:
+  port: 8082
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:7001/eureka
+    register-with-eureka: true
+    fetch-registry: true
+  instance:
+    instance-id: data-generator-manage:8082
+    prefer-ip-address: true
+
+mybatis:
+  config-location: classpath:mybatis/mybatis-config.xml
+  type-aliases-package: cn.com.yoyosys.datagenerator.task.entity
+  mapper-locations: classpath:mybatis/mapper/*.xml
+info:
+  app.name: data-generator-manage
+  company.name: www.yoyosys.com.cn
+  build.artifactId: $project.artifactId$
+  build.version: $project.version$
