@@ -14,6 +14,7 @@ zuul:
     data-generator-data: /data-proxy/** 
     data-generator-task: /task-proxy/**
     data-generator-manage: /manage-proxy/**
+    data-generator-redis: /redis-proxy/**
 eureka:
   client:
     service-url:
