@@ -3,10 +3,21 @@ spring:
     active:
     - dev
 ---
+server:
+  port: 9501
+  servlet:
+    session:
+      cookie:
+        http-only: true
+  connection-timeout: 100000
 spring: 
   profiles: dev
   application:
     name: data-generator-gateway
+feign:
+  httpclient:
+    time-to-live: 10000
+    connection-timeout: 20000
 zuul:
   prefix: /data-generator
   ignored-services: "*"
