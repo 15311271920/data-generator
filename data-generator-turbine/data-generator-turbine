@@ -1,0 +1,22 @@
+spring: 
+  profiles: 
+    active: 
+    - dev
+---
+server:
+  port: 9101
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:7001/eureka
+  instance:
+    lease-renewal-interval-in-seconds: 3
+    lease-expiration-duration-in-seconds: 10
+    instance-id: data-generator-turbine:9101
+turbine:
+  app-config: DATA-GENERATOR-TASK,DATA-GENERATOR-DATA,DATA-GENERATOR-MANAGE
+  cluster-name-expression: new String("default")
+spring: 
+  profiles: dev
+  application:
+    name: data-generator-turbine
