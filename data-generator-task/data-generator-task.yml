@@ -74,14 +74,6 @@ feign:
 #      - application/xml
 #      - application/json
 #      min-request-size: 2048  # 超过2048字节进行压缩
-#eureka:
-#  client:
-#    service-url:  #客户端进行Eureka注册的配置
-#      defaultZone: http://edmin:mldnjava@eureka-7001.com:7001/eureka
-#      #,http://edmin:mldnjava@eureka-7002.com:7002/eureka,http://edmin:mldnjava@eureka-7003.com:7003/eureka
-#    register-with-eureka: true
-#  instance:
-#    instance-id: comsumer-feign
 management:
   endpoints:
     web:
