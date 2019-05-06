@@ -27,18 +27,18 @@ server:
 eureka:
   client:
     service-url:
-      defaultZone: http://localhost:7001/eureka
-    register-with-eureka: true
-    fetch-registry: true
+      defaultZone: http://localhost:7001/eureka    # Eureka服务地址
+    register-with-eureka: true    # 注册到Eureka中
+    fetch-registry: true    # 从Eureka中获取服务注册信息
   instance:
-    instance-id: data-generator-manage:8082
-    prefer-ip-address: true
+    instance-id: data-generator-manage:8082    # 注册到Eureka服务的实例名称
+    prefer-ip-address: true    # 在Eureka服务列表中以IP地址记录
 
 mybatis:
   config-location: classpath:mybatis/mybatis-config.xml
   type-aliases-package: cn.com.yoyosys.datagenerator.task.entity
   mapper-locations: classpath:mybatis/mapper/*.xml
-info:
+info:    # 配置属性
   app.name: data-generator-manage
   company.name: www.yoyosys.com.cn
   build.artifactId: $project.artifactId$
