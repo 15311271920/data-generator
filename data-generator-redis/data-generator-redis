@@ -1,4 +1,4 @@
-spring:
+spring: 
   profiles:
     active:
     - dev
@@ -21,16 +21,7 @@ spring:
   application:
     name: data-generator-redis
   redis:
-#    host: 172.16.160.133
-#    host: 192.168.220.130
-#    port: 6379
     timeout: 6000
-#    jedis:
-#      pool:
-#        max-active: 100
-#        max-wait: -1
-#        max-idle: 10
-#        min-idle: 3
     lettuce:
       pool:
         max-active: 10
@@ -40,7 +31,5 @@ spring:
     cluster:
       nodes: 172.16.160.133:6379,172.16.160.133:6380,172.16.160.134:6379,172.16.160.134:6380,172.16.160.135:6379,172.16.160.135:6380
       max-redirects: 2
-      
-        
 info: 
   expireTime: 600
