@@ -6,7 +6,7 @@ spring:
 spring: 
   profiles: dev
   application:
-    name: data-generator-data
+    name: data-generator-data    # 注册到Eureka的服务ID
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource    # 配置当前要使用的数据源的操作类型
     driver-class-name: com.mysql.cj.jdbc.Driver      # 配置MySQL的驱动程序类
@@ -22,16 +22,16 @@ spring:
       validationQuery: SELECT 'x' from dual
 feign:
   hystrix:
-    enabled: true
+    enabled: true    # 开启Feign的Hystrix
 eureka:
   client:
     service-url:
-      defaultZone: http://localhost:7001/eureka
+      defaultZone: http://localhost:7001/eureka    # Eureka服务地址
   instance:
-    instance-id: data-generator-data:8081
-    prefer-ip-address: true
-    lease-renewal-interval-in-seconds: 3
-    lease-expiration-duration-in-seconds: 10
+    instance-id: data-generator-data:8081    # 注册到Eureka服务的实例名称
+    prefer-ip-address: true     # 在Eureka服务列表中以IP地址记录
+    lease-renewal-interval-in-seconds: 3    # client发送心跳给Eureka的频率 3秒
+    lease-expiration-duration-in-seconds: 10    # client发送心跳给Eureka的超时时间 10秒
 mybatis:
   config-location: classpath:mybatis/mybatis-config.xml
   mapper-locations: classpath:mybatis/mapper/*.xml
