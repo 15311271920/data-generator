@@ -5,37 +5,34 @@ spring:
 ---
 server:
   port: 9501
-  connection-timeout: 100000    # 最大连接时间
+  servlet:
+    session:
+      cookie:
+        http-only: true
+  connection-timeout: 100000
 spring: 
   profiles: dev
   application:
-    name: data-generator-gateway    # 注册到Eureka服务的实例名称
+    name: data-generator-gateway
 feign:
   httpclient:
-    time-to-live: 20000    # 客户端连接存活时间
-    connection-timeout: 20000    # 连接超时时间
+    time-to-live: 10000
+    connection-timeout: 20000
 zuul:
-  prefix: /data-generator   # 网关前缀
-  ignored-services: "*"    # 除了一下声明的服务，拒绝所有服务
-  sensitive-headers:    # 允许所有请求头
+  prefix: /data-generator
+  ignored-services: "*"
+  sensitive-headers: 
   routes:
-    data-generator-data: /data-proxy/**    # 路由匹配 数据库操作
-    data-generator-task: /task-proxy/**    # 路由匹配 作业管理
-    data-generator-manage: /manage-proxy/**    # 路由匹配 人员管理
-    data-generator-redis: /redis-proxy/**    # 路由匹配 redis
+    data-generator-data: /data-proxy/** 
+    data-generator-task: /task-proxy/**
+    data-generator-manage: /manage-proxy/**
+    data-generator-redis: /redis-proxy/**
 eureka:
   client:
     service-url:
-      defaultZone: http://localhost:7001/eureka    # Eureka服务地址
+      defaultZone: http://localhost:7001/eureka
   instance:
-    instance-id: data-generator-data:8081    # 注册到Eureka服务的实例名称
-    prefer-ip-address: true    # 在Eureka服务列表中以IP地址记录
-    lease-renewal-interval-in-seconds: 3    # client发送心跳给Eureka的频率 3秒
-    lease-expiration-duration-in-seconds: 10    # client发送心跳给Eureka的超时时间 10秒
-#hystrix: 
-#  command: 
-#    default: 
-#      execution: 
-#        isolation: 
-#          thread: 
-#            timeoutInMilliseconds: 100000
+    instance-id: data-generator-data:8081
+    prefer-ip-address: true
+    lease-renewal-interval-in-seconds: 3
+    lease-expiration-duration-in-seconds: 10
