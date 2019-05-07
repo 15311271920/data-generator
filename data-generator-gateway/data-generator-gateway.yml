@@ -43,3 +43,10 @@ hystrix:
         isolation: 
           thread: 
             timeoutInMilliseconds: 100000
+logging:
+  level:
+    org.springframework.boot: debug
+    org.springframework.cloud: debug
+    com.netflix.hystirx: debug
+    com.netflix.ribbon: debug
+    cn.com.yoyosys.datagenerator.gateway: debug
